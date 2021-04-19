@@ -1,5 +1,8 @@
 import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import rootReducers from "./reducers";
 
+/*
 import { createStore } from "redux";
 
 //ACTION TYPES
@@ -44,6 +47,12 @@ store.dispatch(valueIncremented());
 store.dispatch(valueIncremented());
 store.dispatch(valueIncremented());
 store.dispatch(valueDecremented());
+*/
+
+const store = createStore(
+  rootReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const App = () => {
   return <h1>Hello</h1>;
