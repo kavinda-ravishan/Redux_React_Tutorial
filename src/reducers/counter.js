@@ -1,14 +1,12 @@
-//ACTION TYPES
-const INCREMENT = "incremented";
-const DECREMENT = "decremented";
+import * as actionTypes from "./actionTypes";
 
 //REDUCER
 const counterReducer = (state = 0, action) => {
   switch (action.type) {
-    case INCREMENT:
-      return state + 1;
-    case DECREMENT:
-      return state - 1;
+    case actionTypes.INCREMENT:
+      return state + action.payload.num;
+    case actionTypes.DECREMENT:
+      return state - action.payload.num;
     default:
       return state;
   }
