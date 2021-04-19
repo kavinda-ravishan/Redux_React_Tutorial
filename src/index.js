@@ -1,17 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import { createStore } from "redux";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//ACTION TYPES
+const VALUE_INCREMENTED = "valueIncremented";
+const VALUE_DECREMENTED = "valueDecremented";
+
+//ACTION
+const valueIncremented = () => {
+  return {
+    type: VALUE_INCREMENTED,
+  };
+};
+
+const valueDecremented = () => {
+  return {
+    type: VALUE_DECREMENTED,
+  };
+};
+
+//REDUCER
+const reducer = (state = 0, action) => {
+  switch (action.type) {
+    case VALUE_INCREMENTED:
+      return state + 1;
+    case VALUE_DECREMENTED:
+      return state - 1;
+    default:
+      return state;
+  }
+};
+
+//STORE
+const store = createStore(reducer);
+
+//Display state
+store.subscribe(() => {
+  console.log(store.getState());
+});
+
+//DISPATCH
+store.dispatch(valueIncremented());
+store.dispatch(valueIncremented());
+store.dispatch(valueIncremented());
+store.dispatch(valueDecremented());
+
+const App = () => {
+  return <h1>Hello</h1>;
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
